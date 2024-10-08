@@ -20,57 +20,95 @@ function divide(a, b) {
 
 function operate(operator, a, b) {
   let result = 0;
-  console.log(a);
-  
-  console.log(operator);
+ 
   b = Number(displayedValue);
-  console.log(b);
-
-  if (operator === 'plus') {
+  
+  if (operator === '+') {
     result = add(a, b);
-  } else if (operator === 'minus') {
+  } else if (operator === '-') {
     result = substract(a, b);
-  } else if (operator === 'multiply') {
+  } else if (operator === '*') {
     result = multiply(a, b);
-  } else if (operator === 'divide') {
+  } else if (operator === '/') {
     result = divide(a, b);
   }
 
-  document.querySelector('.display')
-    .innerHTML = (result);
+  if (!result) {
+    document.querySelector('.display')
+    .innerHTML = '0';
+  } else {
+    document.querySelector('.display')
+      .innerHTML = result.toString().substring(0, 12);
+  }
 
-  console.log(result);
   displayedValue = "";
+  
+  return result;
+}
+
+function clearData() {
+  a = 0;
+  b = 0;
+  operator = "";
 }
 
 let displayedValue = "";
 
 function addToDisplay(value) {
   displayedValue += value;
-
-  console.log(displayedValue);
-  
   display(displayedValue);
 }
 
 function display() {
   if (displayedValue) {
     document.querySelector('.display')
-      .innerHTML = displayedValue;
+      .innerHTML = displayedValue.substring(0, 12);
   } else {
     document.querySelector('.display')
       .innerHTML = '0';
   }
 }
 
-display(displayedValue);
-
 function saveA(oper) {
-  a = Number(displayedValue);
-  operator = oper;
-  displayedValue = "";
+  if (!operator) {
+    a = Number(displayedValue);
+    operator = oper;
+    displayedValue = "";
+  } else {
+    a = operate(operator, a, b);
+    operator = oper;
+  }
 }
 
-function clear() {
-  displayedValue = "";
+function removeActive() {
+  const activeButton = document.querySelector(".active");
+  if (activeButton) {
+    activeButton.classList.remove('active');
+  }
 }
+
+function clearDisplay() {
+  displayedValue = "";
+  display();
+}
+
+function show() {
+  console.log(`sa${a}`);
+  console.log(operator);
+  console.log(`sb${b}`);
+  
+}
+
+const operatorButtons = document.querySelectorAll('.orange');
+
+operatorButtons.forEach(operatorButton => {
+  operatorButton.addEventListener('click', () => {
+    const activeButton = document.querySelector('.active');
+    if (activeButton) {
+      activeButton.classList.remove('active');
+    }
+    operatorButton.classList.add('active');
+  })
+});
+
+display(displayedValue);

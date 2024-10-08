@@ -10,22 +10,28 @@
   <div class="calculator">
     <div class="display"></div>
     <div class="buttons">
-      <button onclick="addToDisplay('1')">1</button>
-      <button onclick="addToDisplay('2')">2</button>
-      <button onclick="addToDisplay('3')">3</button>
-      <button onclick="saveA('plus')">+</button>
-      <button onclick="addToDisplay('4')">4</button>
-      <button onclick="addToDisplay('5')">5</button>
-      <button onclick="addToDisplay('6')">6</button>
-      <button onclick="saveA('minus')">-</button>
-      <button onclick="addToDisplay('7')">7</button>
-      <button onclick="addToDisplay('8')">8</button>
-      <button onclick="addToDisplay('9')">9</button>
-      <button onclick="saveA('multiply')">*</button>
-      <button onclick="display()">C</button>
-      <button onclick="addToDisplay('0')">0</button>
-      <button onclick="operate(operator, a, b)">=</button>
-      <button onclick="saveA('divide')">/</button>
+      <button onclick="addToDisplay('1'), removeActive()">1</button>
+      <button onclick="addToDisplay('2'), removeActive()">2</button>
+      <button onclick="addToDisplay('3'), removeActive()">3</button>
+      <button class="orange" onclick="saveA('+')">+</button>
+
+      <button onclick="addToDisplay('4'), removeActive()">4</button>
+      <button onclick="addToDisplay('5'), removeActive()">5</button>
+      <button onclick="addToDisplay('6'), removeActive()">6</button>
+      <button class="orange" onclick="saveA('-')">-</button>
+
+      <button onclick="addToDisplay('7'), removeActive()">7</button>
+      <button onclick="addToDisplay('8'), removeActive()">8</button>
+      <button onclick="addToDisplay('9'), removeActive()">9</button>
+      <button class="orange" onclick="saveA('*')">*</button>
+
+      <button onclick="addToDisplay('.'), removeActive()">.</button>
+      <button onclick="addToDisplay('0'), removeActive()">0</button>
+      <button onclick="operate(operator, a, b), clearData(), removeActive()">=</button>
+      <button class="orange" onclick="saveA('/')">/</button>
+
+      <button class="red" onclick="clearDisplay(), removeActive()">C</button>
+      <!-- <button onclick="show()">S</button> -->
     </div>
   </div>
 
