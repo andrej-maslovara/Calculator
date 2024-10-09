@@ -131,4 +131,70 @@ operatorButtons.forEach(operatorButton => {
   })
 });
 
+function showOperator(oper) {
+  displayedValue = oper;
+  display();
+  displayedValue = "";
+}
+
+document.body.addEventListener('keydown', (event) => {
+  if (event.key === '1') {
+    addToDisplay('1');
+    removeActive();
+  } else if (event.key === '2') {
+    addToDisplay('2');
+    removeActive();
+  } else if (event.key === '3') {
+    addToDisplay('3');
+    removeActive();
+  } else if (event.key === '4') {
+    addToDisplay('4');
+    removeActive();
+  } else if (event.key === '5') {
+    addToDisplay('5');
+    removeActive();
+  } else if (event.key === '6') {
+    addToDisplay('6');
+    removeActive();
+  } else if (event.key === '7') {
+    addToDisplay('7');
+    removeActive();
+  } else if (event.key === '8') {
+    addToDisplay('8');
+    removeActive();
+  } else if (event.key === '9') {
+    addToDisplay('9');
+    removeActive();
+  } else if (event.key === '0') {
+    addToDisplay('0');
+    removeActive();
+  } else if (event.key === '.') {
+    addDecimal('.');
+    removeActive();
+  } else if (event.key === '+') {
+    saveA('+');
+    showOperator('+');
+  } else if (event.key === '-') {
+    saveA('-');
+    showOperator('-');
+  } else if (event.key === '*') {
+    saveA('*');
+    showOperator('*');
+  } else if (event.key === '/') {
+    saveA('/');
+    showOperator('/');
+  } else if (event.key === '=' || event.key === 'Enter') {
+    operate(operator, a, b);
+    clearData();
+    removeActive();
+  } else if (event.key === 'Escape') {
+    clearDisplay();
+    removeActive();
+    clearData();
+  } else if (event.key === 'Backspace' || key === 'Delete') {
+    backspace();
+    removeActive();
+  }
+});
+
 display(displayedValue);
