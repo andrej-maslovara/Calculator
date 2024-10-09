@@ -25,13 +25,18 @@
       <button onclick="addToDisplay('9'), removeActive()">9</button>
       <button class="orange" onclick="saveA('*')">*</button>
 
-      <button onclick="addToDisplay('.'), removeActive()">.</button>
+      <button onclick="addDecimal('.'), removeActive()">.</button>
       <button onclick="addToDisplay('0'), removeActive()">0</button>
       <button onclick="operate(operator, a, b), clearData(), removeActive()">=</button>
       <button class="orange" onclick="saveA('/')">/</button>
 
-      <button class="red" onclick="clearDisplay(), removeActive()">C</button>
-      <!-- <button onclick="show()">S</button> -->
+      <button
+        class="red"
+        onclick="clearDisplay(),
+        removeActive(),
+        clearData()"
+      >C</button>
+      <button class="red" onclick="backspace(), removeActive()">&#8592;</button>
     </div>
   </div>
 

@@ -23,7 +23,9 @@ function operate(operator, a, b) {
  
   b = Number(displayedValue);
   
-  if (operator === '+') {
+  if (operator === '/' && b === 0) {
+    result = "Ask your Ex!"
+  } else if (operator === '+') {
     result = add(a, b);
   } else if (operator === '-') {
     result = substract(a, b);
@@ -33,13 +35,24 @@ function operate(operator, a, b) {
     result = divide(a, b);
   }
 
-  if (!result) {
+  if (!result || result === Infinity) {
     document.querySelector('.display')
     .innerHTML = '0';
   } else {
     document.querySelector('.display')
       .innerHTML = result.toString().substring(0, 12);
   }
+
+  // if (!result) {
+  //   document.querySelector('.display')
+  //   .innerHTML = '0';
+  // } else if (result === Infinity) {
+  //   document.querySelector('.display')
+  //     .innerHTML = a;
+  // } else {
+  //   document.querySelector('.display')
+  //     .innerHTML = result.toString().substring(0, 12);
+  // }
 
   displayedValue = "";
   
@@ -56,6 +69,20 @@ let displayedValue = "";
 
 function addToDisplay(value) {
   displayedValue += value;
+  display(displayedValue);
+}
+
+function addDecimal(value) {
+  if (displayedValue.includes('.')) {
+    return;
+  } else {
+    displayedValue += value;
+    display(displayedValue);
+  }
+}
+
+function backspace() {
+  displayedValue = displayedValue.slice(0, -1);
   display(displayedValue);
 }
 
@@ -90,13 +117,6 @@ function removeActive() {
 function clearDisplay() {
   displayedValue = "";
   display();
-}
-
-function show() {
-  console.log(`sa${a}`);
-  console.log(operator);
-  console.log(`sb${b}`);
-  
 }
 
 const operatorButtons = document.querySelectorAll('.orange');
