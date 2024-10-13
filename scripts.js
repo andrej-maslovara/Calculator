@@ -1,21 +1,22 @@
 let a = 0;
 let b = 0;
 let operator = "";
+let c = 0;
 
 function add(a, b) {
-  return (a + b);
+  return (a + b).toFixed(4);
 }
 
 function substract(a, b) {
-  return (a - b);
+  return (a - b).toFixed(4);
 }
 
 function multiply(a, b) {
-  return (a * b);
+  return (a * b).toFixed(4);
 }
 
 function divide(a, b) {
-  return (a / b);
+  return (a / b).toFixed(4);
 }
 
 function operate(operator, a, b) {
@@ -43,19 +44,8 @@ function operate(operator, a, b) {
       .innerHTML = result.toString().substring(0, 12);
   }
 
-  // if (!result) {
-  //   document.querySelector('.display')
-  //   .innerHTML = '0';
-  // } else if (result === Infinity) {
-  //   document.querySelector('.display')
-  //     .innerHTML = a;
-  // } else {
-  //   document.querySelector('.display')
-  //     .innerHTML = result.toString().substring(0, 12);
-  // }
-
+  c = result;
   displayedValue = "";
-  
   return result;
 }
 
@@ -68,8 +58,13 @@ function clearData() {
 let displayedValue = "";
 
 function addToDisplay(value) {
-  displayedValue += value;
-  display(displayedValue);
+  if (displayedValue === '0' && value === '0') {
+    displayedValue = '0';
+    display(displayedValue);
+  } else {
+    displayedValue += value;
+    display(displayedValue);
+  }
 }
 
 function addDecimal(value) {
@@ -97,7 +92,14 @@ function display() {
 }
 
 function saveA(oper) {
-  if (!operator) {
+  const activeButton = document.querySelector('.active');
+  
+  if (activeButton) {
+    operator = oper;
+  }else if (c && !displayedValue) {
+    a = c;
+    operator = oper;
+  } else if (!a && !operator) {
     a = Number(displayedValue);
     operator = oper;
     displayedValue = "";
@@ -105,6 +107,14 @@ function saveA(oper) {
     a = operate(operator, a, b);
     operator = oper;
   }
+}
+
+function show() {
+  console.log(a);
+  console.log(operator);
+  console.log(b);
+  console.log(displayedValue);
+  console.log(c);
 }
 
 function removeActive() {
@@ -119,6 +129,12 @@ function clearDisplay() {
   display();
 }
 
+function showOperator(oper) {
+  displayedValue = oper;
+  display();
+  displayedValue = "";
+}
+
 const operatorButtons = document.querySelectorAll('.orange');
 
 operatorButtons.forEach(operatorButton => {
@@ -130,12 +146,6 @@ operatorButtons.forEach(operatorButton => {
     operatorButton.classList.add('active');
   })
 });
-
-function showOperator(oper) {
-  displayedValue = oper;
-  display();
-  displayedValue = "";
-}
 
 document.body.addEventListener('keydown', (event) => {
   if (event.key === '1') {
