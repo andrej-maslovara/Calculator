@@ -4,19 +4,19 @@ let operator = "";
 let c = 0;
 
 function add(a, b) {
-  return (a + b).toFixed(4);
+  return (a + b).toFixed(4)*1;
 }
 
 function substract(a, b) {
-  return (a - b).toFixed(4);
+  return (a - b).toFixed(4)*1;
 }
 
 function multiply(a, b) {
-  return (a * b).toFixed(4);
+  return (a * b).toFixed(4)*1;
 }
 
 function divide(a, b) {
-  return (a / b).toFixed(4);
+  return (a / b).toFixed(4)*1;
 }
 
 function operate(operator, a, b) {
@@ -58,8 +58,8 @@ function clearData() {
 let displayedValue = "";
 
 function addToDisplay(value) {
-  if (displayedValue === '0' && value === '0') {
-    displayedValue = '0';
+  if (displayedValue === '' && value === '0') {
+    displayedValue = '';
     display(displayedValue);
   } else {
     displayedValue += value;
@@ -107,14 +107,6 @@ function saveA(oper) {
     a = operate(operator, a, b);
     operator = oper;
   }
-}
-
-function show() {
-  console.log(a);
-  console.log(operator);
-  console.log(b);
-  console.log(displayedValue);
-  console.log(c);
 }
 
 function removeActive() {
