@@ -139,6 +139,26 @@ operatorButtons.forEach(operatorButton => {
   })
 });
 
+function addActiveClass(eventKey) {
+  let clickedButton = null;
+
+  if (eventKey === '+') {
+    clickedButton = document.querySelector('.plus');
+  } else if (eventKey === '-') {
+    clickedButton = document.querySelector('.minus');
+  } else if (eventKey === '*') {
+    clickedButton = document.querySelector('.multiply');
+  } else if (eventKey === '/') {
+    clickedButton = document.querySelector('.divide');
+  }
+
+  const activeButton = document.querySelector('.active');
+    if (activeButton) {
+      activeButton.classList.remove('active');
+    }
+    clickedButton.classList.add('active');
+}
+
 document.body.addEventListener('keydown', (event) => {
   if (event.key === '1') {
     addToDisplay('1');
@@ -175,15 +195,19 @@ document.body.addEventListener('keydown', (event) => {
     removeActive();
   } else if (event.key === '+') {
     saveA('+');
+    addActiveClass(event.key);
     showOperator('+');
   } else if (event.key === '-') {
     saveA('-');
+    addActiveClass(event.key);
     showOperator('-');
   } else if (event.key === '*') {
     saveA('*');
+    addActiveClass(event.key);
     showOperator('*');
   } else if (event.key === '/') {
     saveA('/');
+    addActiveClass(event.key);
     showOperator('/');
   } else if (event.key === '=' || event.key === 'Enter') {
     operate(operator, a, b);
@@ -197,6 +221,6 @@ document.body.addEventListener('keydown', (event) => {
     backspace();
     removeActive();
   }
-});
+})
 
 display(displayedValue);
